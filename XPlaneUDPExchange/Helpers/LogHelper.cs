@@ -4,10 +4,11 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using XPlaneUDPExchange.Model;
+using XPlaneUDPExchange.Model.Events;
 
 namespace XPlaneUDPExchange.Helpers
 {
-    class LogHelper
+    public class LogHelper
     {
         #region PUBLIC_MEMBER_PROPERTIES
 
@@ -38,7 +39,7 @@ namespace XPlaneUDPExchange.Helpers
         /// <param name="function">Function when the event occurs.</param>
         /// <param name="eventLabel">Label of event. (Example: Data sent:).</param>
         /// <param name="data">Message with detailed information about the event.</param>
-        internal static void Func_WriteEventInLogFile(DateTime event_UT, Enum_EventTypes eventType, string username, string function, string eventLabel, string data)
+        public static void Func_WriteEventInLogFile(DateTime event_UT, Enum_EventTypes eventType, string username, string function, string eventLabel, string data)
         {
             string s1;
 
@@ -54,7 +55,7 @@ namespace XPlaneUDPExchange.Helpers
                 {
                     Func_WriteToLog(s1, event_UT);
                     //s1 += "\r\n";
-                    OnDataReceived(null, new CustomEventArgs { message = s1, eventType = eventType });
+                    OnDataReceived(null, new CustomEventArgs { Message = s1, EventType = eventType });
                 }
                 //Unlock the current thread
                 writeEventInLogFileMutex.ReleaseMutex();
@@ -103,7 +104,7 @@ namespace XPlaneUDPExchange.Helpers
         {
             if (DataReceived != null)
             {
-                DataReceived(null, new CustomEventArgs { message = e.message, eventType = e.eventType });
+                DataReceived(null, new CustomEventArgs { Message = e.Message, EventType = e.EventType });
             }
         }
 
