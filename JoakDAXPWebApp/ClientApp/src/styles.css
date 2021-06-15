@@ -14,3 +14,23 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+body {
+  min-height: 100%;
+  /*margin-bottom: 60px;*/
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.footer{
+  height: 60px;
+  line-height: 60px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #fff;
+}

@@ -1,13 +1,13 @@
+using System;
+using JoakDAXPWebApp.Authorization;
 using JoakDAXPWebApp.Data;
+using JoakDAXPWebApp.Helpers;
 using JoakDAXPWebApp.Hubs;
 using JoakDAXPWebApp.Interfaces;
 using JoakDAXPWebApp.Models;
-using Microsoft.AspNetCore.Authentication;
+using JoakDAXPWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -28,18 +28,13 @@ namespace JoakDAXPWebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseMySql(
+                    mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)
+                )
+            );
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
-
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
             services.AddControllersWithViews();
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
@@ -50,6 +45,15 @@ namespace JoakDAXPWebApp
 
             // Add SignalR
             services.AddSignalR();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            // configure strongly typed settings objects
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+
+            // configure DI for application services
+            services.AddScoped<IJwtUtils, JwtUtils>();
+            services.AddScoped<IUserService, UserService>();
 
             // Add CORS to allow Cross Origin Request
             services.AddCors(options =>
@@ -66,8 +70,11 @@ namespace JoakDAXPWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext applicationDbContext)
         {
+            // migrate any database changes on startup (includes initial db creation)
+            applicationDbContext.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -89,9 +96,15 @@ namespace JoakDAXPWebApp
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
+
+            /*app.UseAuthentication();
             app.UseIdentityServer();
-            app.UseAuthorization();
+            app.UseAuthorization();*/
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
