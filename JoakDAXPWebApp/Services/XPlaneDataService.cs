@@ -1,5 +1,8 @@
-﻿using JoakDAXPWebApp.Interfaces;
+﻿using JoakDAXPWebApp.Hubs;
+using JoakDAXPWebApp.Interfaces;
+using JoakDAXPWebApp.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,7 +17,7 @@ using XPlaneUDPExchange.Model;
 using XPlaneUDPExchange.Model.Data;
 using XPlaneUDPExchange.Model.DTO;
 
-namespace JoakDAXPWebApp.Models
+namespace JoakDAXPWebApp.Services
 {
     public class XPlaneDataService : IXPlaneDataService
     {
@@ -29,13 +32,17 @@ namespace JoakDAXPWebApp.Models
         // Store data to compare with current received data
         private XPlaneDataModel _xplaneData;
 
-        public XPlaneDataService(IMemoryCache memoryCache, IServiceScopeFactory scopeFactory, IWebHostEnvironment env)
+        // Declare IHubContext for sending data to browser app
+        private IHubContext<XPlaneHub> _hub;
+
+        public XPlaneDataService(IMemoryCache memoryCache, IServiceScopeFactory scopeFactory, IWebHostEnvironment env, IHubContext<XPlaneHub> hub)
         {
             _cache = memoryCache;
             _scopeFactory = scopeFactory;
             _env = env;
             _xPlaneDataLibrary = new XPlaneUDPExchange.Model.XPlaneUDPExchange();
             _xplaneData = new XPlaneDataModel();
+            _hub = hub;
         }
 
         /// <summary>
@@ -140,6 +147,8 @@ namespace JoakDAXPWebApp.Models
                             break;
                     }
                 }
+                // Trigger SignalR message using hub
+                _hub.Clients.All.SendAsync("xplanedata", _xplaneData);
             }catch(Exception exception1)
             {
                 LogHelper.Func_WriteEventInLogFile(DateTime.Now.ToLocalTime(), Enum_EventTypes.Error, "", string.Format("{0}.{1}()", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name), "GeneralException",
