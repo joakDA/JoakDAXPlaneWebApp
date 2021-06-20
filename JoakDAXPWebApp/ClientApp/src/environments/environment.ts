@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:5001'
+  apiUrl: 'https://localhost:5001',
+  signalRHub: 'https://10.226.1.112:5001/XPlaneHub/'
 };
 
 /*

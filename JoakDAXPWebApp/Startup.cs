@@ -59,11 +59,11 @@ namespace JoakDAXPWebApp
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                    //.WithOrigins("http://localhost:4200")
-                    .AllowAnyOrigin()
+                    .WithOrigins("http://localhost:4200")
+                    //.AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader());
-                    //.AllowCredentials());
+                    .AllowAnyHeader()
+                    .AllowCredentials());
             });
 
             // Add XPlane UDP Exchange service
