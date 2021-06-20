@@ -27,6 +27,7 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.11.1" />
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.7" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +55,8 @@
     <None Remove="System.IdentityModel.Tokens.Jwt" />
     <None Remove="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <None Remove="Models\DataTable\" />
+    <None Remove="System.Linq.Dynamic.Core" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authorization\" />
@@ -62,6 +65,7 @@
     <Folder Include="Helpers\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Models\Users\" />
+    <Folder Include="Models\DataTable\" />
   </ItemGroup>
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->

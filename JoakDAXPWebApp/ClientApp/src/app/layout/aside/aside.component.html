@@ -1,41 +1,70 @@
 <aside>
-    <div [ngClass]="isCollapsed ? 'is-collapsed' : ''" class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar-container">
-        <header class="sidebar-header">
-            <div class="sidebar-logo" (click)="navigateHome()">
-                <fa-icon [icon]="faPlaneIcon" class="sidebar-menu-icon"></fa-icon>
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none sidebar-nav-item">
-                    <a class="navbar-brand" [routerLink]="['/']">JoakDAXPWebApp</a>
-                </a>
-            </div>
-            <hr>
-        </header>
-        <nav role="navigation">
-            <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item sidebar-nav-item">
-                    <fa-icon [icon]="faHomeIcon" [routerLink]="['/']" [routerLinkActive]="['active']" class="sidebar-menu-icon"></fa-icon>
-                    <a [routerLink]="['/']" [routerLinkActive]="['active']" class="" aria-current="page">Home</a>
-                </li>
-                <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
-                    <fa-icon [icon]="faPlaneDepartureIcon" [routerLink]="['/counter']" class="sidebar-menu-icon"></fa-icon>
-                    <a class="" aria-current="page" [routerLink]="['/counter']">Flights</a>
-                </li>
-                <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
-                    <fa-icon [icon]="faMapMarkerIcon" [routerLink]="['/fetch-data']" class="sidebar-menu-icon map-icon"></fa-icon>
-                    <a class="" aria-current="page" [routerLink]="['/fetch-data']">Map</a>
-                </li>
-                <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
-                    <fa-icon [icon]="faCogsIcon" [routerLink]="['/fetch-data']" class="sidebar-menu-icon"></fa-icon>
-                    <a class="" aria-current="page" [routerLink]="['/fetch-data']">Configuration</a>
-                </li>
-                <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
-                    <fa-icon [icon]="faInfoIcon" [routerLink]="['/fetch-data']" class="sidebar-menu-icon open-licenses-icon"></fa-icon>
-                    <a class="" aria-current="page" [routerLink]="['/fetch-data']">Open Licenses</a>
-                </li>
+  <div [ngClass]="isCollapsed ? 'is-collapsed' : ''"
+       class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark sidebar-container">
+    <header class="sidebar-header">
+      <div class="sidebar-logo" (click)="navigateHome()">
+        <fa-icon [icon]="faPlaneIcon" class="sidebar-menu-icon"></fa-icon>
+        <a href="/"
+           class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none sidebar-nav-item">
+          <a class="navbar-brand" [routerLink]="['/']">JoakDAXPWebApp</a>
+        </a>
+      </div>
+      <hr>
+    </header>
+    <nav role="navigation">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item sidebar-nav-item">
+          <fa-icon [icon]="faHomeIcon" [routerLink]="['/']" [routerLinkActive]="['active']"
+                   class="sidebar-menu-icon"></fa-icon>
+          <a [routerLink]="['/']" [routerLinkActive]="['active']" class="" aria-current="page">Home</a>
+        </li>
+        <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
+          <fa-icon [icon]="faPlaneDepartureIcon" [routerLink]="['/counter']" class="sidebar-menu-icon"></fa-icon>
+          <a class="" aria-current="page" [routerLink]="['/counter']">Flights</a>
+        </li>
+        <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
+          <fa-icon [icon]="faMapMarkerIcon" [routerLink]="['/fetch-data']" class="sidebar-menu-icon map-icon"></fa-icon>
+          <a class="" aria-current="page" [routerLink]="['/fetch-data']">Map</a>
+        </li>
+        <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
+          <fa-icon [icon]="faCogsIcon" [routerLink]="['/fetch-data']" class="sidebar-menu-icon"></fa-icon>
+          <a class="" aria-current="page" [routerLink]="['/fetch-data']">Configuration</a>
+        </li>
+        <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
+          <fa-icon [icon]="faInfoIcon" [routerLink]="['/fetch-data']"
+                   class="sidebar-menu-icon open-licenses-icon"></fa-icon>
+          <a class="" aria-current="page" [routerLink]="['/fetch-data']">Open Licenses</a>
+        </li>
+        <li class="nav-item sidebar-nav-item" [routerLinkActive]="['link-active']">
+          <fa-icon [icon]="faUsersIcon" [routerLink]="['/users']"
+                   class="sidebar-menu-icon users-icon"></fa-icon>
+          <a class="" aria-current="page" [routerLink]="['/users']">Pilots</a>
+          <div class="submenu" id="usersSubmenuContainer">
+            <ul>
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <fa-icon [icon]="faUserPlusIcon" [routerLink]="['/account/add']"
+                         class="sidebar-menu-icon users-icon"></fa-icon>
+                <a class="" aria-current="page" [routerLink]="['/account/register']">Add Pilot</a>
+              </li>
+              <li class="nav-item" [routerLinkActive]="['link-active']">
+                <fa-icon [icon]="faUserIcon" [routerLink]="['/users/profile', user.id]"
+                         class="sidebar-menu-icon user-icon"></fa-icon>
+                <a class="" aria-current="page" [routerLink]="['/users/profile', user.id]">{{user.username}}</a>
+              </li>
             </ul>
-        </nav>
-        <footer class="sidebar-footer" (click)="toggle()">
-            <fa-icon [icon]="faArrowLeftIcon" class="sidebar-toggle-arrow sidebar-menu-icon" ng-class="isCollapsed ? 'rotate' : ''"></fa-icon>
-            <span class="sidebar-toggle-text">Minimize menu</span>
-        </footer>
-    </div>
+          </div>
+        </li>
+        <li class="nav-item sidebar-nav-item">
+          <fa-icon [icon]="faUserLogoutIcon" (click)="logout()"
+                   class="sidebar-menu-icon open-licenses-icon"></fa-icon>
+          <a class="" aria-current="page" (click)="logout()">Open Licenses</a>
+        </li>
+      </ul>
+    </nav>
+    <footer class="sidebar-footer" (click)="toggle()">
+      <fa-icon [icon]="faArrowLeftIcon" class="sidebar-toggle-arrow sidebar-menu-icon"
+               [ngClass]="isCollapsed ? 'rotate' : ''"></fa-icon>
+      <span class="sidebar-toggle-text">Minimize menu</span>
+    </footer>
+  </div>
 </aside>

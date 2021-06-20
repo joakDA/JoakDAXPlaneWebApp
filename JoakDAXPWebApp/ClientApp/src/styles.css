@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
-
+@font-face {
+  font-family: 'Roboto';
+  src: url("assets/fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -15,22 +20,199 @@ code {
   border-color: #1861ac;
 }
 
-body {
-  min-height: 100%;
-  /*margin-bottom: 60px;*/
-}
-
+/* Sticky footer styles
+-------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
 }
-
-.footer{
-  height: 60px;
-  line-height: 60px;
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+.footer {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+
+.footer p{
+  margin-bottom: 0;
+}
+
+.footer a{
   color: #fff;
+}
+
+.copyright-text{
+  line-height: 60px;
+  text-align: center;
+  color: #ffffff;
+}
+
+main > .container-fluid{
+  background-image: url("assets/backgrounds/simulador-account.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-dark-card h1 {
+  color: #36f;
+  text-transform: capitalize;
+  font-size: 2rem;
+}
+
+.btn-dark-primary, .btn-dark-secondary, .btn-dark-danger{
+  border-radius: .25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.75rem;
+  height: 100%;
+  transition: width .4s ease;
+  transform: translateZ(0);
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  color: #ffffff;
+}
+
+.btn-dark-primary{
+  background-color: #36f;
+}
+
+.btn-dark-secondary{
+  background-color: #598bff;
+}
+
+.btn-dark-danger{
+  background-image: linear-gradient(90deg,#ffa8b4,#ff708d);
+  box-shadow: 0 0 0 0 #db2c66,0 0 0 0 #b81d5b,0 0 transparent;
+}
+
+table td.buttons-column button, table td.buttons-column a{
+  display: inline-block;
+  margin: 0.5em;
+}
+
+table.dataTable tbody tr{
+  background-color: transparent !important;
+}
+
+.dataTables_length select{
+  color: #36f;
+}
+
+table.table th, table.table td{
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active, .dataTables_wrapper .dataTables_paginate a.paginate_button:not(.current){
+  color: #36f !important;
+}
+
+.app-container .dataTables_wrapper .dataTables_paginate .paginate_button.current, .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover, .app-container .dataTables_wrapper .dataTables_paginate a.paginate_button:hover:not(.current){
+  color: #ffffff !important;
+  background: #36f;
+  border-color: #36f;
+}
+
+.dataTables_length, .dataTables_filter, .dt-buttons{
+  width: 30%;
+  display: inline-block;
+}
+
+.dataTables_info, .dataTables_paginate{
+  padding-bottom: 1em;
+}
+
+.dataTables_filter, .dataTables_paginate {
+  float: right;
+  margin-right: 5% !important;
+}
+
+.dataTables_info {
+  margin-top: -1em;
+}
+
+.dataTables_wrapper .dataTables_paginate a.paginate_button.current {
+  background-color: #36f;
+  padding: 0.5em 1rem !important;
+  color: #ffffff !important;
+}
+
+.dataTables_info, .dataTables_filter label, .dataTables_length label{
+  color: #ffffff !important;
+}
+
+.app-container .dataTables_wrapper .dataTables_info{
+  line-height: 62px;
+}
+
+.bg-dark-card{
+  background-color: #151a30;
+  border: .0625rem solid #101426;
+  border-radius: .25rem;
+}
+
+.bg-dark-panel{
+  background-color: #222b45;
+  border-radius: .25rem;
+}
+
+.card.bg-dark-panel hr{
+  border-top: 1px solid #36f;
+}
+
+.card.bg-dark-card .text-secondary{
+  color: #36f !important;
+}
+
+.bg-dark-card table.table th{
+  color: #36f;
+}
+
+.bg-dark-card .card-header{
+  color: #36f;
+  border-bottom: 1px solid #ffffff;
+}
+
+.bg-dark-card .card-body{
+  color: #ffffff;
+}
+
+.form-buttons-container{
+  text-align: center;
+}
+
+.form-buttons-container button, .form-buttons-container a.btn{
+  display: inline-block;
+  margin: auto 1rem;
+}
+
+.dt-buttons button.dt-button{
+  background-color: #36f;
+  color: #ffffff;
+  border-color: #36f;
+}
+
+.dt-buttons button.dt-button:hover:not(.disabled), .dt-buttons div.dt-button:hover:not(.disabled), .dt-buttons a.dt-button:hover:not(.disabled), .dt-buttons input.dt-button:hover:not(.disabled){
+  background-color: #ffffff;
+  color: #36f;
+}
+
+.users-container{
+  height: 95vh;
+  overflow-y: scroll;
+}
+
+.users-list-container{
+  min-height: 95vh;
+}
+
+.card-header{
+  text-align: center;
 }

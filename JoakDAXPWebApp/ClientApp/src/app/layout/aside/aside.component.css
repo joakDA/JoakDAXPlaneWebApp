@@ -234,3 +234,13 @@ aside .sidebar-header .sidebar-nav-item {
     opacity: 1;
   }
 }
+
+.is-collapsed #usersSubmenuContainer ul {
+  padding-left: 0;
+  padding-top: 10px;
+}
+
+#usersSubmenuContainer ul li {
+  list-style: none;
+  padding: 0.5em 0;
+}

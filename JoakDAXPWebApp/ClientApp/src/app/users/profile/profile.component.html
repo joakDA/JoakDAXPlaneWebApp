@@ -1,0 +1,71 @@
+<h1 class="text-center mb-4">Pilot Profile</h1>
+<div class="row gutters-sm">
+  <div class="col-md-4 mb-1">
+    <div class="card bg-dark-panel" *ngIf="user">
+      <div class="card-body">
+        <div class="d-flex flex-column align-items-center text-center">
+          <ngx-avatar size="150" name="{{user.firstName}} {{user.lastName}}"></ngx-avatar>
+          <div class="mt-3">
+            <h4>{{user.firstName}} {{user.lastName}}</h4>
+            <p class="text-secondary mb-1">Pilot</p>
+            <div class="profile-buttons-container mt-2">
+              <a routerLink="/account/edit/{{user.id}}" class="btn btn-dark-primary">Edit Pilot</a>
+              <a (click)="accountService.logout()" class="btn btn-dark-secondary">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="card bg-dark-panel mb-3" *ngIf="user">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Full Name</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{user.firstName}} {{user.lastName}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Email</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{user.email}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Username</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{user.username}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Registered</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{formatDateToString(user.createdDate)}}
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-sm-3">
+            <h6 class="mb-0">Last Updated</h6>
+          </div>
+          <div class="col-sm-9 text-secondary">
+            {{formatDateToString(user.updatedDate)}}
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

@@ -59,7 +59,8 @@ namespace JoakDAXPWebApp
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", builder => builder
-                    .WithOrigins("*")
+                    //.WithOrigins("http://localhost:4200")
+                    .AllowAnyOrigin()
                     .AllowAnyMethod()
                     .AllowAnyHeader());
                     //.AllowCredentials());
@@ -87,7 +88,7 @@ namespace JoakDAXPWebApp
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
@@ -95,6 +96,9 @@ namespace JoakDAXPWebApp
             }
 
             app.UseRouting();
+
+            // CORS
+            app.UseCors("CorsPolicy");
 
             // global error handler
             app.UseMiddleware<ErrorHandlerMiddleware>();
@@ -127,9 +131,6 @@ namespace JoakDAXPWebApp
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
-
-            // CORS
-            app.UseCors("CorsPolicy");
 
             // Use UDP Exchange library
             app.ApplicationServices.GetService<IXPlaneDataService>().InitializeXPlaneUDPExchange();

@@ -1,0 +1,9 @@
+.profile-buttons-container {
+  width: 100%;
+  text-align: center;
+}
+
+.profile-buttons-container a.btn {
+  display: inline-block;
+  margin: .625rem 1rem;
+}

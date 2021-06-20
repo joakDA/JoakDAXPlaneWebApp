@@ -1,0 +1,57 @@
+<div class="card bg-dark-card">
+  <h4 *ngIf="isAddMode" class="card-header">Add Pilot</h4>
+  <h4 *ngIf="!isAddMode" class="card-header">Edit Pilot</h4>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col">
+          <label for="firstName">First Name</label>
+          <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="col">
+          <label for="lastName">Last Name</label>
+          <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">
+          Password
+          <em *ngIf="!isAddMode">(Leave blank to keep the same password)</em>
+        </label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
+      </div>
+      <div class="form-group form-buttons-container">
+        <button [disabled]="loading" class="btn btn-dark-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          <span *ngIf="isAddMode">Add Pilot</span>
+          <span *ngIf="!isAddMode">Edit Pilot</span>
+        </button>
+        <a routerLink="/users" class="btn btn-dark-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>

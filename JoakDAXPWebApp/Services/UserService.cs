@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
+using System.Reflection;
 using AutoMapper;
 using JoakDAXPWebApp.Data;
 using JoakDAXPWebApp.Entities;
 using JoakDAXPWebApp.Exceptions;
 using JoakDAXPWebApp.Interfaces;
+using JoakDAXPWebApp.Models.DataTable;
 using JoakDAXPWebApp.Models.Users;
+using XPlaneUDPExchange.Helpers;
 using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace JoakDAXPWebApp.Services
@@ -36,13 +41,94 @@ namespace JoakDAXPWebApp.Services
 
             // authentication successful
             var response = _mapper.Map<AuthenticateResponse>(user);
-            response.JwtToken = _jwtUtils.GenerateToken(user);
+            response.Token = _jwtUtils.GenerateToken(user);
             return response;
         }
 
-        public IEnumerable<User> GetAll()
+        public IList<User> GetAll(DataTableRequestModel model, out int recordsTotal, out int recordsFiltered)
         {
-            return _context.Users;
+            int draw = 0;
+            int start = 0;
+            int length = 0;
+            recordsTotal = 0;
+            recordsFiltered = 0;
+            IQueryable<User> users;
+            try
+            {
+                string search = model.search != null ? model.search.value.ToUpper() : "";
+                draw = model.draw;
+                // Find paging info
+                start = model.start;
+                length = model.length;
+                // Sort
+                string sortColumn = ConvertColumnIndexToName(model.order.FirstOrDefault().column);
+                string sortColumnDir = model.order.FirstOrDefault().dir;
+
+                users = _context.Users.AsQueryable();
+
+                recordsTotal = users.Count();
+
+                users = users.Where(x => x.FirstName.ToUpper().Contains(search) ||
+                x.LastName.ToUpper().Contains(search) || x.Username.ToUpper().Contains(search) ||
+                x.Email.ToUpper().Contains(search));
+
+                if (!string.IsNullOrEmpty(sortColumn) && !string.IsNullOrEmpty(sortColumnDir)) { 
+                    users = users.OrderBy(sortColumn + " " + sortColumnDir);
+                }
+
+                recordsFiltered = users.Count();
+
+                users = users.Skip((start)).Take(length);
+
+                return users.ToList();
+            }catch(Exception exception1)
+            {
+                LogHelper.Func_WriteEventInLogFile(DateTime.Now.ToLocalTime(), Enum_EventTypes.Error, "", string.Format("{0}.{1}()", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name), "GeneralException",
+                  "Source = " + exception1.Source.Replace("'", "''") + ", Message = " + exception1.Message.Replace("'", "''"));
+                recordsFiltered = 0;
+                recordsTotal = 0;
+                return new List<User>();
+            }
+        }
+
+        /// <summary>
+        /// Convert the numeric index of the column to the column name to make sort possible on the
+        /// datable server side.
+        /// </summary>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        private string ConvertColumnIndexToName(int column)
+        {
+            string columnName = string.Empty;
+            try
+            {
+                switch (column)
+                {
+                    case 0:
+                        columnName = "Id";
+                        break;
+                    case 1:
+                        columnName = "FirstName";
+                        break;
+                    case 2:
+                        columnName = "LastName";
+                        break;
+                    case 3:
+                        columnName = "Email";
+                        break;
+                    case 4:
+                        columnName = "Username";
+                        break;
+                    default:
+                        break;
+                }
+            }
+            catch (Exception exception1)
+            {
+                LogHelper.Func_WriteEventInLogFile(DateTime.Now.ToLocalTime(), Enum_EventTypes.Error, "", string.Format("{0}.{1}()", MethodBase.GetCurrentMethod().DeclaringType.FullName, MethodBase.GetCurrentMethod().Name), "GeneralException",
+                  "Source = " + exception1.Source.Replace("'", "''") + ", Message = " + exception1.Message.Replace("'", "''"));
+            }
+            return columnName;
         }
 
         public User GetById(int id)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using JoakDAXPWebApp.Entities;
+using JoakDAXPWebApp.Models.DataTable;
 using JoakDAXPWebApp.Models.Users;
 
 namespace JoakDAXPWebApp.Interfaces
@@ -10,7 +11,7 @@ namespace JoakDAXPWebApp.Interfaces
     public interface IUserService
     {
         AuthenticateResponse Authenticate(AuthenticateRequest model);
-        IEnumerable<User> GetAll();
+        IList<User> GetAll(DataTableRequestModel model, out int recordsTotal, out int recordsFiltered);
         User GetById(int id);
         void Register(RegisterRequest model);
         void Update(int id, UpdateRequest model);

@@ -1,6 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faPlane, faHome, faPlaneDeparture, faMapMarker, faCogs, faInfo, faBars, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlane,
+  faHome,
+  faPlaneDeparture,
+  faMapMarker,
+  faCogs,
+  faInfo,
+  faArrowLeft,
+  faUsers,
+  faUserPlus,
+  faSignOutAlt,
+  faUserAlt
+} from '@fortawesome/free-solid-svg-icons';
+import {AccountService} from '../../_services';
+import {User} from '../../_models';
 
 @Component({
   selector: 'app-aside',
@@ -8,15 +22,18 @@ import { faPlane, faHome, faPlaneDeparture, faMapMarker, faCogs, faInfo, faBars,
   styleUrls: ['./aside.component.css']
 })
 export class AsideComponent implements OnInit {
-  faBarsIcon = faBars;
+  user: User;
   faPlaneIcon = faPlane;
   faHomeIcon = faHome;
   faPlaneDepartureIcon = faPlaneDeparture;
   faMapMarkerIcon = faMapMarker;
   faCogsIcon = faCogs;
   faInfoIcon = faInfo;
-  faArrowLeftIcon = faArrowLeft
-
+  faArrowLeftIcon = faArrowLeft;
+  faUsersIcon = faUsers;
+  faUserIcon = faUserAlt;
+  faUserPlusIcon = faUserPlus;
+  faUserLogoutIcon = faSignOutAlt;
   isCollapsed = true;
 
   collapse() {
@@ -27,13 +44,18 @@ export class AsideComponent implements OnInit {
     this.isCollapsed = !this.isCollapsed;
   }
 
-  constructor(private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router) {
+    this.user = this.accountService.userValue;
+  }
 
   ngOnInit() {
   }
 
-  navigateHome() {      
+  navigateHome() {
     this.router.navigate(['']);
   }
 
+  logout() {
+    this.accountService.logout();
+  }
 }

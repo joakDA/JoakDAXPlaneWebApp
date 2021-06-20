@@ -1,0 +1,35 @@
+<h1 class="text-center">Pilots</h1>
+<table datatable [dtOptions]="dtOptions" class="table table-striped table-borderless table-pilots" style="width: 100%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let userData of users">
+    <td>{{userData.id}}</td>
+    <td>{{userData.firstName}}</td>
+    <td>{{userData.lastName}}</td>
+    <td>{{userData.email}}</td>
+    <td>{{userData.username}}</td>
+    <td class="buttons-column" style="white-space: nowrap">
+      <a routerLink="edit/{{userData.id}}" class="btn btn-dark-primary">Edit</a>
+      <button (click)="deleteUser(userData.id)" class="btn btn-dark-danger btn-delete-user"
+              [disabled]="userData.isDeleting">
+        <span *ngIf="userData.isDeleting" class="spinner-border spinner-border-sm"></span>
+        <span *ngIf="!userData.isDeleting">Delete</span>
+      </button>
+    </td>
+  </tr>
+  <tr *ngIf="!users">
+    <td colspan="4" class="text-center">
+      <span class="spinner-border spinner-border-lg align-center"></span>
+    </td>
+  </tr>
+  </tbody>
+</table>

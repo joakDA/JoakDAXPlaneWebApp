@@ -7,11 +7,18 @@ using JoakDAXPWebApp.Models;
 using JoakDAXPWebApp.Services;
 using JoakDAXPWebApp.Interfaces;
 using JoakDAXPWebApp.Models.Users;
+using Microsoft.AspNetCore.Cors;
+using System.Collections.Generic;
+using JoakDAXPWebApp.Entities;
+using JoakDAXPWebApp.Models.DataTable;
+using Newtonsoft.Json;
+
 namespace JoakDAXPWebApp.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("CorsPolicy")]
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
@@ -44,11 +51,17 @@ namespace JoakDAXPWebApp.Controllers
             return Ok(new { message = "Registration successful" });
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpPost]
+        public IActionResult GetAll(DataTableRequestModel model)
         {
-            var users = _userService.GetAll();
-            return Ok(users);
+            //DataTableRequestModel model = JsonConvert.DeserializeObject<DataTableRequestModel>(jsonData);
+            int recordsTotal = 0;
+            int recordsFiltered = 0;
+            IList<User> users = (IList<User>)_userService.GetAll(model, out recordsTotal, out recordsFiltered);
+
+            DataTableResponseModel<User> usersResponse = new DataTableResponseModel<User>(users, model.draw, recordsFiltered, recordsTotal);
+
+            return Ok(usersResponse);
         }
 
         [HttpGet("{id}")]

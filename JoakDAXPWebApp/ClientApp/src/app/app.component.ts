@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {User} from './_models';
+import {AccountService} from './_services';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'JoakDAXPWebApp';
+  user: User;
+
+  constructor(private accountService: AccountService) {
+    this.accountService.user.subscribe(x => this.user = x);
+  }
+
+  logout() {
+    this.accountService.logout();
+  }
 }
