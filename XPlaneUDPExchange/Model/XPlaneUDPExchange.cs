@@ -511,10 +511,10 @@ namespace XPlaneUDPExchange.Model
             try
             {
                 result.Mach = values[0];
-                result.VerticalSpeed = values[1];
-                result.GLoadNormal = values[2];
-                result.GLoadAxial = values[3];
-                result.GLoadSide = values[4];
+                result.VerticalSpeed = values[2];
+                result.GLoadNormal = values[3];
+                result.GLoadAxial = values[4];
+                result.GLoadSide = values[5];
             }
             catch (Exception exception1)
             {
@@ -536,11 +536,11 @@ namespace XPlaneUDPExchange.Model
             {
                 result.SeaLevelPressure = values[0];
                 result.SeaLevelTemperature = values[1];
-                result.WindSpeed = values[2];
-                result.WindDirection = values[3];
-                result.Turbulence = values[4];
-                result.Precipitation = values[5];
-                result.Hail = values[6];
+                result.WindSpeed = values[3];
+                result.WindDirection = values[4];
+                result.Turbulence = values[5];
+                result.Precipitation = values[6];
+                result.Hail = values[7];
             }
             catch (Exception exception1)
             {

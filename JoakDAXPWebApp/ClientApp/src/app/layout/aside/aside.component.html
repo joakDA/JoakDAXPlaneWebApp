@@ -47,9 +47,9 @@
                 <a class="" aria-current="page" [routerLink]="['/account/register']">Add Pilot</a>
               </li>
               <li class="nav-item" [routerLinkActive]="['link-active']">
-                <fa-icon [icon]="faUserIcon" [routerLink]="['/users/profile', user.id]"
+                <fa-icon *ngIf="user" [icon]="faUserIcon" [routerLink]="['/users/profile', user.id]"
                          class="sidebar-menu-icon user-icon"></fa-icon>
-                <a class="" aria-current="page" [routerLink]="['/users/profile', user.id]">{{user.username}}</a>
+                <a *ngIf="user" class="" aria-current="page" [routerLink]="['/users/profile', user.id]">{{user.username}}</a>
               </li>
             </ul>
           </div>

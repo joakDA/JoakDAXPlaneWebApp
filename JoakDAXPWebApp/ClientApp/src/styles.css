@@ -216,3 +216,42 @@ table.table th, table.table td{
 .card-header{
   text-align: center;
 }
+
+.bg-dark-panel .card-header {
+  color: #36f;
+  text-transform: uppercase;
+}
+
+.bg-dark-panel .data-label {
+  width: 200px;
+  display: inline-block;
+  color: #36f;
+}
+
+.bg-dark-panel .data-value{
+    color: #ffffff;
+}
+
+/***** MAP HOME *****/
+.map-container {
+  /*position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 30px;*/
+  height: 550px;
+}
+
+.row-map-container .card-body{
+  height: 600px;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+  height: 100%;
+}

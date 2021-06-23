@@ -1,10 +1,9 @@
-<h1 class="text-center mb-4">flight real time monitoring</h1>
 <div class="row gutters-sm">
   <div class="col-12 mb-1">
     <div class="card bg-dark-panel">
       <div class="card-body">
         <div class="row row-indicators-container">
-          <div class="col-12 col-md-2">
+          <div class="col-12 col-md-2 mb-2">
             <div class="instrument" id="airspeed"></div>
           </div>
           <div class="col-12 col-md-2">
@@ -21,6 +20,152 @@
           </div>
           <div class="col-12 col-md-2">
             <div class="instrument" id="variometer"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 row-data-container">
+    <div class="row row-data-container">
+      <div class="col-12 col-md-6 row-data-container">
+        <div class="card bg-dark-panel mt-2">
+          <div class="card-header">
+            <h5>Position</h5>
+          </div>
+          <div class="card-body">
+            <div class="row row-position-container">
+              <div class="col-12 distance-container">
+                <span class="data-label">DistanceTraveled</span><span class="data-value"
+                                                                      id="distanceTraveled">N/A</span>
+              </div>
+              <div class="col-12 altitude-sl-container">
+                <span class="data-label">Altitude Sea Level</span><span class="data-value"
+                                                                        id="altitudeSeaLevel">N/A</span>
+              </div>
+              <div class="col-12 altitude-gl-container">
+                <span class="data-label">Altitude Ground Level</span><span class="data-value" id="altitudeGroundLevel">N/A</span>
+              </div>
+              <div class="col-12 vertical-speed-container">
+                <span class="data-label">Vertical Speed</span><span class="data-value" id="verticalSpeed">N/A</span>
+              </div>
+              <div class="col-12 runway-container">
+                <span class="data-label">On Runway?</span><span class="data-value" id="onRunway">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 row-data-container">
+        <div class="card bg-dark-panel mt-2">
+          <div class="card-header">
+            <h5>Weather</h5>
+          </div>
+          <div class="card-body">
+            <div class="row row-speed-container">
+              <div class="col-12 sl-pressure-container">
+                <span class="data-label">Sea Level Pressure / Temp</span><span class="data-value"
+                                                                               id="slPressure">N/A</span> / <span
+                class="data-value" id="slTemperature">N/A</span>
+              </div>
+              <div class="col-12 sl-pressure-container">
+                <span class="data-label">Ambient Pressure / Temp</span><span class="data-value"
+                                                                             id="ambientPressure">N/A</span> / <span
+                class="data-value" id="ambientTemperature">N/A</span>
+              </div>
+              <div class="col-12 wind-container">
+                <span class="data-label">Wind Speed / Dir</span><span class="data-value" id="windSpeed">N/A</span> <span
+                class="data-value" id="windDirection"></span>
+              </div>
+              <div class="col-12 turbulence-container">
+                <span class="data-label">Turbulence / Precipitation</span><span class="data-value"
+                                                                                id="turbulence">N/A</span> <span
+                class="data-value" id="precipitation">N/A</span>
+              </div>
+              <div class="col-12 precipitation-container">
+                <span class="data-label">Barometric Pressure</span> <span class="data-value"
+                                                                          id="barometricPressure">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 row-data-container">
+        <div class="card bg-dark-panel mt-2">
+          <div class="card-header">
+            <h5>Time Data</h5>
+          </div>
+          <div class="card-body">
+            <div class="row row-times-container">
+              <div class="col-12 zulu-time-container">
+                <span class="data-label">Zulu Time</span><span class="data-value" id="zuluTime">N/A</span>
+              </div>
+              <div class="col-12 zulu-time-container">
+                <span class="data-label">Local Time</span><span class="data-value" id="localTime">N/A</span>
+              </div>
+              <div class="col-12 zulu-time-container">
+                <span class="data-label">Mission Time</span><span class="data-value" id="missionTime">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 row-data-container">
+        <div class="card bg-dark-panel mt-2">
+          <div class="card-header">
+            <h5>Speed</h5>
+          </div>
+          <div class="card-body">
+            <div class="row row-speed-container">
+              <div class="col-12 mach-container">
+                <span class="data-label">Mach Speed</span><span class="data-value" id="machSpeed">N/A</span>
+              </div>
+              <div class="col-12 indicated-speed-container">
+                <span class="data-label">Indicated Speed</span><span class="data-value" id="indicatedSpeed">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 row-data-container">
+        <div class="card bg-dark-panel mt-2">
+          <div class="card-header">
+            <h5>Indicators</h5>
+          </div>
+          <div class="card-body">
+            <div class="row row-speed-container">
+              <div class="col-12 flap-position-container">
+                <span class="data-label">Flap Position</span><span class="data-value" id="flapPosition">N/A</span>
+              </div>
+              <div class="col-12 speed-brake-position-container">
+                <span class="data-label">Speed Brake Position</span><span class="data-value"
+                                                                          id="speedBrakePosition">N/A</span>
+              </div>
+              <div class="col-12 gear-extended-container">
+                <span class="data-label">Gear Extended</span><span class="data-value" id="gearExtended">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6 row-data-container home-map-container">
+    <div class="row row-data-container row-map-container">
+      <div class="col-12">
+        <div class="card bg-dark-panel mt-2">
+          <!--<div class="card-header">
+            <h5>Map</h5>
+          </div>-->
+          <div class="card-body">
+            <div class="row row-map-sub-container">
+              <div class="col-12">
+                <div class="map-container">
+                  <div class="map-frame">
+                    <div id="map"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

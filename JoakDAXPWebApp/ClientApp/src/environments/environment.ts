@@ -4,8 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:5001',
-  signalRHub: 'https://10.226.1.112:5001/XPlaneHub/'
+  apiUrl: 'https://localhost:44395',
+  signalRHub: 'https://localhost:44395/XPlaneHub/',
+  initialMapLatitude: 40.4844168,
+  initialMapLongitude: -3.6927541,
+  initialMapZoom: 11,
+  receptionTimeoutSignalR: 10000 // In milliseconds
 };
 
 /*

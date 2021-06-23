@@ -10,7 +10,7 @@ export class SpinnerComponent {
   loading: boolean;
   constructor(private loaderService: LoaderService) {
     this.loaderService.isLoading.subscribe((v) => {
-      // console.log(v);
+      console.log(v);
       this.loading = v;
     });
   }

@@ -42,6 +42,7 @@ namespace XPlaneUDPExchange.Model.DTO
             TimeSpan localTs = TimeSpan.FromHours(data.LocalTime);
             dtNow = DateTime.UtcNow;
             this.LocalTime = dtNow.AddTicks(localTs.Ticks);
+            // TODO: If mission time < 5 seconds, trigger an event to notify a new flight.
         }
     }
 }
