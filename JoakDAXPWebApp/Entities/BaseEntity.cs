@@ -10,6 +10,6 @@ namespace JoakDAXPWebApp.Entities
         /// <summary>
         /// When user was updated.
         /// </summary>
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
     }
 }

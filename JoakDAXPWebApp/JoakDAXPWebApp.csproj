@@ -60,10 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Authorization\" />
-    <Folder Include="Services\" />
-    <Folder Include="Entities\" />
     <Folder Include="Helpers\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Migrations\" />
     <Folder Include="Models\Users\" />
     <Folder Include="Models\DataTable\" />
   </ItemGroup>
@@ -87,7 +86,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
       <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

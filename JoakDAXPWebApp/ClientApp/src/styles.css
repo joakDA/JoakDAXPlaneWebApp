@@ -184,6 +184,10 @@ table.table th, table.table td{
   color: #ffffff;
 }
 
+.bg-dark-card .dataTables_filter label input{
+  color: #36f !important;
+}
+
 .form-buttons-container{
   text-align: center;
 }

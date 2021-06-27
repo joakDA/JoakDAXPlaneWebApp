@@ -15,12 +15,14 @@ import {DtoTrimFlapsSlatsSpeedBrakes} from '../_models/xplane/dtoTrimFlapsSlatsS
 import {DtoLandingGearBrakes} from '../_models/xplane/dtoLandingGearBrakes';
 import {MapService} from '../_services/map.service';
 import {GpsPosition} from '../_models/gpsPosition';
+import {NavigationStart, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, AfterViewInit {
+  private router: Router;
   private settings: any;
   private airspeed: any;
   private attitude: any;
@@ -30,7 +32,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   private variometer: any;
   private map;
 
-  constructor(private signalRService: SignalRService, private mapService: MapService) {
+  constructor(private signalRService: SignalRService, private mapService: MapService, private routerElem: Router) {
+    this.router = routerElem;
     this.settings = {
       off_flag: true,
       size: 250,
@@ -55,7 +58,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.variometer = $.flightIndicator('#variometer', 'variometer', this.settings);
 
     this.signalRService.onSignalRMessage.subscribe((data: XPlaneData) => {
-      // console.log(data);
+      console.log(data);
       this.updateDataAtmosphere(data.dataAtmosphere);
       this.updateDataAttitude(data.dataAttitude);
       this.updateDataSpeed(data.dataSpeed);
@@ -77,6 +80,18 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.clearWidgetsData();
       this.mapService.clearCurrentFlightPositions(this.map);
     });
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        console.log(event.url);
+        this.routerChangeMethod(event.url);
+      }
+    });
+  }
+
+  routerChangeMethod(url) {
+    console.log('Changed to url: ' + url);
+    // TODO: Depending of the route, execute some actions
   }
 
   ngAfterViewInit(): void {
@@ -97,59 +112,95 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
 
   updateDataAtmosphere(dataAtmosphere: DtoAtmosphere) {
-    this.altimeter.setPressure(dataAtmosphere.ambientPressure);
+    try {
+      this.altimeter.setPressure(dataAtmosphere.ambientPressure);
+    } catch (e) {
+      console.log('Update Data Atmosphere: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateDataAttitude(dataAttitude: DtoAttitude) {
-    this.attitude.setPitch(dataAttitude.pitch);
-    this.attitude.setRoll(dataAttitude.roll * -1);
-    this.heading.setHeading(dataAttitude.headingTrue);
-    this.turnCoordinator.setTurn(dataAttitude.headingTrue * -1);
+    try {
+      this.attitude.setPitch(dataAttitude.pitch);
+      this.attitude.setRoll(dataAttitude.roll * -1);
+      this.heading.setHeading(dataAttitude.headingTrue);
+      this.turnCoordinator.setTurn(dataAttitude.headingTrue * -1);
+    } catch (e) {
+      console.log('Update Data Attitude: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateDataSpeed(dataSpeed: DtoSpeed) {
-    this.airspeed.setAirSpeed(dataSpeed.vIndKts);
+    try {
+      this.airspeed.setAirSpeed(dataSpeed.vIndKts);
+    } catch (e) {
+      console.log('Update Data Speed: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateDataMachVvi(dataMachVvi: DtoMachVvi) {
+    try {
     this.variometer.setVario(dataMachVvi.verticalSpeed);
+    } catch (e) {
+      console.log('Update Data Mach Vvi: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateDataPosition(dataPosition: DtoPosition) {
-    this.altimeter.setAltitude(dataPosition.altitudeSeaLevel);
-    // Update map
-    const position: GpsPosition = {latitude: dataPosition.latitude, longitude: dataPosition.longitude};
-    this.mapService.addPositionToCurrentFlight(this.map, position);
-    this.mapService.panTo(this.map, position);
+    try {
+      this.altimeter.setAltitude(dataPosition.altitudeSeaLevel);
+      // Update map
+      const position: GpsPosition = {latitude: dataPosition.latitude, longitude: dataPosition.longitude};
+      this.mapService.addPositionToCurrentFlight(this.map, position);
+      this.mapService.panTo(this.map, position);
+    } catch (e) {
+      console.log('Update Position: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateTimesData(dataTimes: DtoTimes) {
-    document.getElementById('zuluTime').innerText = moment(dataTimes.zuluTime).format('DD/MM/YYYY HH:mm:ss');
-    document.getElementById('localTime').innerText = moment(dataTimes.localTime).format('DD/MM/YYYY HH:mm:ss');
-    // tslint:disable-next-line:max-line-length
-    document.getElementById('missionTime').innerText = dataTimes.missionTime.hours + ':' + dataTimes.missionTime.minutes + ':' + dataTimes.missionTime.seconds;
+    try {
+      document.getElementById('zuluTime').innerText = moment(dataTimes.zuluTime).format('DD/MM/YYYY HH:mm:ss');
+      document.getElementById('localTime').innerText = moment(dataTimes.localTime).format('DD/MM/YYYY HH:mm:ss');
+      // tslint:disable-next-line:max-line-length
+      document.getElementById('missionTime').innerText = dataTimes.missionTime.hours + ':' + dataTimes.missionTime.minutes + ':' + dataTimes.missionTime.seconds;
+    } catch (e) {
+      console.log('Update Times: Ko. Exception details: ' + e.message);
+    }
   }
 
   updatePositionData(data: DtoLocationVelocityDistanceTraveled, altitudeData: DtoPosition) {
-    document.getElementById('distanceTraveled').innerText = data.distanceNm + ' nm';
-    document.getElementById('altitudeSeaLevel').innerText = altitudeData.altitudeSeaLevel + ' ft';
-    document.getElementById('altitudeGroundLevel').innerText = altitudeData.altitudeGroundLevel + ' ft';
-    document.getElementById('onRunway').innerText = (altitudeData.runway ? 'Yes' : 'No');
+    try {
+      document.getElementById('distanceTraveled').innerText = data.distanceNm + ' nm';
+      document.getElementById('altitudeSeaLevel').innerText = altitudeData.altitudeSeaLevel + ' ft';
+      document.getElementById('altitudeGroundLevel').innerText = altitudeData.altitudeGroundLevel + ' ft';
+      document.getElementById('onRunway').innerText = (altitudeData.runway ? 'Yes' : 'No');
+    } catch (e) {
+      console.log('Update Position Data: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateSpeedData(dataMachVvi: DtoMachVvi, dataSpeed: DtoSpeed) {
-    document.getElementById('machSpeed').innerText = dataMachVvi.mach.toString();
-    document.getElementById('indicatedSpeed').innerText = dataSpeed.vIndKts + ' kts';
-    document.getElementById('verticalSpeed').innerText = dataMachVvi.verticalSpeed + ' fpm';
+    try {
+      document.getElementById('machSpeed').innerText = dataMachVvi.mach.toString();
+      document.getElementById('indicatedSpeed').innerText = dataSpeed.vIndKts + ' kts';
+      document.getElementById('verticalSpeed').innerText = dataMachVvi.verticalSpeed + ' fpm';
+    } catch (e) {
+      console.log('Update Speed Data: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateWeatherData(dataWeather: DtoWeather) {
-    document.getElementById('slPressure').innerText = dataWeather.seaLevelPressure + ' inHg';
-    document.getElementById('slTemperature').innerText = dataWeather.seaLevelTemperature + ' ºC';
-    document.getElementById('windSpeed').innerText = dataWeather.windSpeed + ' knots ';
-    document.getElementById('windDirection').innerText = dataWeather.windDirection + ' º';
-    document.getElementById('turbulence').innerText = dataWeather.turbulence.toString();
-    document.getElementById('precipitation').innerText = dataWeather.precipitation.toString();
+    try {
+      document.getElementById('slPressure').innerText = dataWeather.seaLevelPressure + ' inHg';
+      document.getElementById('slTemperature').innerText = dataWeather.seaLevelTemperature + ' ºC';
+      document.getElementById('windSpeed').innerText = dataWeather.windSpeed + ' knots ';
+      document.getElementById('windDirection').innerText = dataWeather.windDirection + ' º';
+      document.getElementById('turbulence').innerText = dataWeather.turbulence.toString();
+      document.getElementById('precipitation').innerText = dataWeather.precipitation.toString();
+    } catch (e) {
+      console.log('Update Weather Data: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateAtmosphere(dataAtmosphere: DtoAtmosphere) {
@@ -158,15 +209,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   updateSystemPressures(dataSystemPressures: DtoSystemPressures) {
-    document.getElementById('barometricPressure').innerText = dataSystemPressures.barometricPressure + ' inHg';
+    try {
+      document.getElementById('barometricPressure').innerText = dataSystemPressures.barometricPressure + ' inHg';
+    } catch (e) {
+      console.log('Update System Pressures Data: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateTrimFlapsSlatsSpeedBrakes(dataTrimFlapsSlatsSpeedBrakes: DtoTrimFlapsSlatsSpeedBrakes) {
-    document.getElementById('flapPosition').innerText = dataTrimFlapsSlatsSpeedBrakes.flapPosition.toString();
-    document.getElementById('speedBrakePosition').innerText = dataTrimFlapsSlatsSpeedBrakes.speedBrakePosition.toString();
+    try {
+      document.getElementById('flapPosition').innerText = dataTrimFlapsSlatsSpeedBrakes.flapPosition.toString();
+      document.getElementById('speedBrakePosition').innerText = dataTrimFlapsSlatsSpeedBrakes.speedBrakePosition.toString();
+    } catch (e) {
+      console.log('Update Trim Flaps Slats Speed Brakes: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateLandingGearBrakes(dataLandingGearBrakes: DtoLandingGearBrakes) {
-    document.getElementById('gearExtended').innerText = (dataLandingGearBrakes.gearExtended ? 'Yes' : 'No');
+    try {
+      document.getElementById('gearExtended').innerText = (dataLandingGearBrakes.gearExtended ? 'Yes' : 'No');
+    } catch (e) {
+      console.log('Update Landing Gear Brakes: Ko. Exception details: ' + e.message);
+    }
   }
 }

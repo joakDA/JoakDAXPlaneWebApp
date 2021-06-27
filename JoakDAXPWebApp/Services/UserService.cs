@@ -15,7 +15,7 @@ using BCryptNet = BCrypt.Net.BCrypt;
 
 namespace JoakDAXPWebApp.Services
 {
-    public class UserService : IUserService
+    public class UserService : IUserService, IDatabaseService
     {
         private ApplicationDbContext _context;
         private IJwtUtils _jwtUtils;
@@ -97,7 +97,7 @@ namespace JoakDAXPWebApp.Services
         /// </summary>
         /// <param name="column"></param>
         /// <returns></returns>
-        private string ConvertColumnIndexToName(int column)
+        public string ConvertColumnIndexToName(int column)
         {
             string columnName = string.Empty;
             try

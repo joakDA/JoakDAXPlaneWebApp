@@ -16,6 +16,8 @@ import {AppRoutingModule} from './app-routing.module';
 import { LoaderService } from './_services/loader.service';
 import { LoaderInterceptorService } from './_helpers/loader-interceptor.service';
 import { SpinnerComponent } from './layout/spinner/spinner.component';
+import { FlightComponent } from './flight/flight.component';
+import {DataTablesModule} from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -26,14 +28,16 @@ import { SpinnerComponent } from './layout/spinner/spinner.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    FlightComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
     HttpClientModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DataTablesModule
   ],
   providers: [
     LoaderService,
