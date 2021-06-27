@@ -1,7 +1,7 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import {XPlaneData} from '../_models/signalr/xPlaneData';
-import { environment } from '../../environments/environment';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,12 @@ export class SignalRService {
       .catch(err => console.log('Error while starting connection to hub: ' + err));
   }
 
+  public stopConnection = () => {
+    this.hubConnection.stop()
+      .then(() => console.log('Connection to hub stopped'))
+      .catch(err => console.log('Error while stopping connection to hub: ' + err));
+  }
+
   public addTransferXPlaneDataListener = () => {
     this.hubConnection.on('xplanedata', (data: XPlaneData) => {
       if (this.receptionTimeout !== null) {
@@ -49,5 +55,6 @@ export class SignalRService {
     this.onSignalRMessage.emit(data);
   }
 
-  constructor() { }
+  constructor() {
+  }
 }

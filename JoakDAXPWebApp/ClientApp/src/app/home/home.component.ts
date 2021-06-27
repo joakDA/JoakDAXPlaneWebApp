@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy} from '@angular/core';
 import {SignalRService} from '../_services/signal-r.service';
 import {XPlaneData} from '../_models/signalr/xPlaneData';
 import {DtoSpeed} from '../_models/xplane/dtoSpeed';
@@ -16,12 +16,15 @@ import {DtoLandingGearBrakes} from '../_models/xplane/dtoLandingGearBrakes';
 import {MapService} from '../_services/map.service';
 import {GpsPosition} from '../_models/gpsPosition';
 import {NavigationStart, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
+  private signalRSubscription: Subscription;
+  private signalRTimeoutSubscription: Subscription;
   private router: Router;
   private settings: any;
   private airspeed: any;
@@ -44,6 +47,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.signalRService.startConnection();
+    this.signalRService.addTransferXPlaneDataListener();
+
     // @ts-ignore
     this.airspeed = $.flightIndicator('#airspeed', 'airspeed', this.settings);
     // @ts-ignore
@@ -57,8 +63,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     // @ts-ignore
     this.variometer = $.flightIndicator('#variometer', 'variometer', this.settings);
 
-    this.signalRService.onSignalRMessage.subscribe((data: XPlaneData) => {
-      console.log(data);
+    this.signalRSubscription = this.signalRService.onSignalRMessage.subscribe((data: XPlaneData) => {
+      // console.log(data);
       this.updateDataAtmosphere(data.dataAtmosphere);
       this.updateDataAttitude(data.dataAttitude);
       this.updateDataSpeed(data.dataSpeed);
@@ -75,7 +81,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     // Timeout event subscriber
-    this.signalRService.onSignalRTimeout.subscribe(() => {
+    this.signalRTimeoutSubscription = this.signalRService.onSignalRTimeout.subscribe(() => {
       // Clear widgets data
       this.clearWidgetsData();
       this.mapService.clearCurrentFlightPositions(this.map);
@@ -97,6 +103,16 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.map = this.mapService.initializeMap();
     // this.mapService.loadCurrentFlightPositions(this.map);
+  }
+
+  ngOnDestroy(): void {
+    if (this.signalRSubscription) {
+      this.signalRSubscription.unsubscribe();
+    }
+    if (this.signalRTimeoutSubscription) {
+      this.signalRTimeoutSubscription.unsubscribe();
+    }
+    this.signalRService.stopConnection();
   }
 
   clearWidgetsData() {
@@ -204,8 +220,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   updateAtmosphere(dataAtmosphere: DtoAtmosphere) {
-    document.getElementById('ambientPressure').innerText = dataAtmosphere.ambientPressure + ' inHg';
-    document.getElementById('ambientTemperature').innerText = dataAtmosphere.ambientTemperature + ' ºC';
+    try {
+      document.getElementById('ambientPressure').innerText = dataAtmosphere.ambientPressure + ' inHg';
+      document.getElementById('ambientTemperature').innerText = dataAtmosphere.ambientTemperature + ' ºC';
+    } catch (e) {
+      console.log('Update Data Atmosphere: Ko. Exception details: ' + e.message);
+    }
   }
 
   updateSystemPressures(dataSystemPressures: DtoSystemPressures) {

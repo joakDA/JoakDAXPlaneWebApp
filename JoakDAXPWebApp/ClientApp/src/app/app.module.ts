@@ -7,7 +7,6 @@ import { AsideComponent } from './layout/aside/aside.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertComponent } from './alert/alert.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -18,6 +17,7 @@ import { LoaderInterceptorService } from './_helpers/loader-interceptor.service'
 import { SpinnerComponent } from './layout/spinner/spinner.component';
 import { FlightComponent } from './flight/flight.component';
 import {DataTablesModule} from 'angular-datatables';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -27,9 +27,9 @@ import {DataTablesModule} from 'angular-datatables';
     AlertComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent,
     SpinnerComponent,
-    FlightComponent
+    FlightComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),

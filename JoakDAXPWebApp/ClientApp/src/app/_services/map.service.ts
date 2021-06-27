@@ -3,6 +3,7 @@ import {GpsPosition} from '../_models/gpsPosition';
 import {environment} from '../../environments/environment';
 import * as L from 'leaflet';
 import 'leaflet-extra-markers';
+import 'leaflet-fullscreen';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,10 @@ export class MapService {
     map.on('load', () => {
       this.loadCurrentFlightPositions(map);
     });
+
+    // or, add to an existing map:
+    // @ts-ignore
+    map.addControl(new L.Control.Fullscreen());
 
     return map;
   }

@@ -32,7 +32,8 @@
               "node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
               "src/assets/css/flightindicators.css",
               "node_modules/leaflet/dist/leaflet.css",
-              "node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css"
+              "node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css",
+              "node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",

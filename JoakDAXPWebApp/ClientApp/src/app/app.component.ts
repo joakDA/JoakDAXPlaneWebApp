@@ -12,13 +12,11 @@ export class AppComponent implements OnInit {
   title = 'JoakDAXPWebApp';
   user: User;
 
-  constructor(private accountService: AccountService, private signalRService: SignalRService) {
+  constructor(private accountService: AccountService) {
     this.accountService.user.subscribe(x => this.user = x);
   }
 
   ngOnInit() {
-    this.signalRService.startConnection();
-    this.signalRService.addTransferXPlaneDataListener();
   }
 
   logout() {
