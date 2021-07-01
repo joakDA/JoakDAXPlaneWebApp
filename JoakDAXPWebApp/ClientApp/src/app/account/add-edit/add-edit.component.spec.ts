@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddEditComponent } from './add-edit.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AccountService, AlertService} from '../../_services';
+import {RouterTestingModule} from '@angular/router/testing';
+import {HttpClient, HttpHandler} from '@angular/common/http';
 
 describe('AddEditComponent', () => {
   let component: AddEditComponent;
@@ -8,7 +12,9 @@ describe('AddEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddEditComponent ]
+      imports: [FormsModule, ReactiveFormsModule, RouterTestingModule],
+      declarations: [ AddEditComponent ],
+      providers: [ AccountService, AlertService, HttpClient, HttpHandler]
     })
     .compileComponents();
   });

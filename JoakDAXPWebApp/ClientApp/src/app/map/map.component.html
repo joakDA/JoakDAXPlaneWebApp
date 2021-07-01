@@ -2,7 +2,43 @@
   <div class="col-12 mb-1">
     <div class="card bg-dark-panel">
       <div class="card-body historic-map-card-body">
-        <div class="row row-indicators-container h-100">
+        <div class="row row-datetime-filters h-10">
+          <div class="col-12 col-md-6 start-timepicker-container">
+            <div class="form-group">
+              <div class="input-group date" data-target-input="nearest" NgTempusdominusBootstrap>
+                <input
+                  *ngIf="startDate && startOptions"
+                  [(ngModel)]="startDate"
+                  (ngModelChange)="onUpdateDatepicker()"
+                  [options]="startOptions"
+                  NgTempusdominusBootstrapInput
+                  type="text" class="form-control"
+                />
+                <div class="input-group-append" NgTempusdominusBootstrapToggle>
+                  <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 end-timepicker-container">
+            <div class="form-group">
+              <div class="input-group date" data-target-input="nearest" NgTempusdominusBootstrap>
+                <input
+                  *ngIf="endDate && endOptions"
+                  [(ngModel)]="endDate"
+                  (ngModelChange)="onUpdateDatepicker()"
+                  [options]="endOptions"
+                  NgTempusdominusBootstrapInput
+                  type="text" class="form-control"
+                />
+                <div class="input-group-append" NgTempusdominusBootstrapToggle>
+                  <div class="input-group-text"><i class="fas fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row row-map map-height-full">
           <div class="col-12 h-100">
             <div class="map-container h-100">
               <div class="map-frame">

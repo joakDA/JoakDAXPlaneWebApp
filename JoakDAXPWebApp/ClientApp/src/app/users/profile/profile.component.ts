@@ -3,6 +3,7 @@ import {AccountService} from '../../_services';
 import {User} from '../../_models';
 import {first} from 'rxjs/operators';
 import * as moment from 'moment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -14,15 +15,21 @@ export class ProfileComponent implements OnInit {
   user: User = null;
   constructor(
     public accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.id = this.accountService.userValue.id;
+    if (this.accountService.userValue !== null) {
+      this.id = this.accountService.userValue.id;
 
-    // Retrieve user details from api
-    this.accountService.getById(this.id)
-      .pipe(first())
-      .subscribe(x => this.user = x);
+      // Retrieve user details from api
+      this.accountService.getById(this.id)
+        .pipe(first())
+        .subscribe(x => this.user = x);
+    } else {
+      // Redirect to login
+      this.router.navigate(['/']);
+    }
   }
 
   formatDateToString(dateValue): string {

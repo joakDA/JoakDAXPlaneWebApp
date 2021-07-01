@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Start the SignalR Connection using the service.
     this.signalRService.startConnection();
     this.signalRService.addTransferXPlaneDataListener();
 
@@ -63,8 +64,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     // @ts-ignore
     this.variometer = $.flightIndicator('#variometer', 'variometer', this.settings);
 
+    // Subscribe to an event emitter to receive each message sent on the signalR Hub configured on SignalRService.
     this.signalRSubscription = this.signalRService.onSignalRMessage.subscribe((data: XPlaneData) => {
-      // console.log(data);
+      // The following methods update the data shown on the instruments and panels.
       this.updateDataAtmosphere(data.dataAtmosphere);
       this.updateDataAttitude(data.dataAttitude);
       this.updateDataSpeed(data.dataSpeed);

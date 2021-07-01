@@ -34,11 +34,14 @@ namespace JoakDAXPWebApp.Data
             modelBuilder.Entity<User>().ToTable("user");
             modelBuilder.Entity<FlightEventType>().ToTable("flight_event_type");
             modelBuilder.Entity<Flight>().ToTable("flight");
+            modelBuilder.Entity<LicenseInfo>().ToTable("license_info");
 
             // Configure Primary Keys
             modelBuilder.Entity<User>().HasKey(u => u.Id).HasName("pk_user");
             modelBuilder.Entity<FlightEventType>().HasKey(fet => fet.Id).HasName("pk_flight_event_type");
             modelBuilder.Entity<Flight>().HasKey(f => f.Id).HasName("pk_flight");
+            modelBuilder.Entity<LicenseInfo>().HasKey(li => li.Id).HasName("pk_license_info");
+
 
             // Configure indexes
             // User
@@ -48,6 +51,9 @@ namespace JoakDAXPWebApp.Data
             modelBuilder.Entity<User>().HasIndex(u => u.LastName).HasDatabaseName("idx_last_name");
             // Flight Event Type
             modelBuilder.Entity<FlightEventType>().HasIndex(fet => fet.Name).IsUnique().HasDatabaseName("idx_flight_event_name_unique");
+            // License Info
+            modelBuilder.Entity<LicenseInfo>().HasIndex(li => li.LicenseName).HasDatabaseName("idx_license_name");
+            modelBuilder.Entity<LicenseInfo>().HasIndex(li => li.LibraryName).IsUnique().HasDatabaseName("idx_library_name_unique");
 
             // Configure columns
             
@@ -82,6 +88,15 @@ namespace JoakDAXPWebApp.Data
             modelBuilder.Entity<Flight>().Property(f => f.CreatedDate).HasColumnType("datetime(6)").IsRequired();
             modelBuilder.Entity<Flight>().Property(f => f.UpdatedDate).HasColumnType("datetime(6)").IsRequired(false);
 
+            //License Info
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.Id).HasColumnType("int").UseMySqlIdentityColumn().IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.LibraryName).HasColumnType("varchar(100)").IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.LicenseName).HasColumnType("varchar(50)").IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.LicenseText).HasColumnType("longtext").IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.Enabled).HasColumnType("tinyint(1)").IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.CreatedDate).HasColumnType("datetime(6)").IsRequired();
+            modelBuilder.Entity<LicenseInfo>().Property(li => li.UpdatedDate).HasColumnType("datetime(6)").IsRequired(false);
+
             // Relationships
             //modelBuilder.Entity<Flight>().HasOne<FlightEventType>().WithMany().HasPrincipalKey(fet => fet.Id).HasForeignKey(f => f.FlightEventTypeId).OnDelete(DeleteBehavior.Cascade).HasConstraintName(string.Format("fk_{0}", Guid.NewGuid().ToString()));
         }
@@ -115,5 +130,7 @@ namespace JoakDAXPWebApp.Data
         public DbSet<Flight> Flights { get; set; }
 
         public DbSet<FlightEventType> FlightEventTypes { get; set; }
+
+        public DbSet<LicenseInfo> LicenseInfo { get; set; }
     }
 }

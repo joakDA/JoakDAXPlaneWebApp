@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AsideComponent } from './layout/aside/aside.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertComponent } from './alert/alert.component';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -18,6 +17,10 @@ import { SpinnerComponent } from './layout/spinner/spinner.component';
 import { FlightComponent } from './flight/flight.component';
 import {DataTablesModule} from 'angular-datatables';
 import { MapComponent } from './map/map.component';
+import {NgTempusdominusBootstrapModule} from 'ngx-tempusdominus-bootstrap';
+import { LicenseInfoComponent } from './license-info/license-info.component';
+import {AccordionModule} from 'ngx-bootstrap/accordion';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,10 +29,10 @@ import { MapComponent } from './map/map.component';
     FooterComponent,
     AlertComponent,
     HomeComponent,
-    CounterComponent,
     SpinnerComponent,
     FlightComponent,
-    MapComponent
+    MapComponent,
+    LicenseInfoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({appId: 'ng-cli-universal'}),
@@ -37,7 +40,11 @@ import { MapComponent } from './map/map.component';
     ReactiveFormsModule,
     FontAwesomeModule,
     AppRoutingModule,
-    DataTablesModule
+    DataTablesModule,
+    NgTempusdominusBootstrapModule,
+    BrowserAnimationsModule,
+    AccordionModule.forRoot(),
+    FormsModule
   ],
   providers: [
     LoaderService,

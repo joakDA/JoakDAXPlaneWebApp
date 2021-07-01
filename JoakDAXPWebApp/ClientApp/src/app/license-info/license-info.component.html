@@ -1,0 +1,17 @@
+<div class="p-4 bg-dark h-100">
+  <div class="container-fluid license-info-container">
+    <div class="row row-license-info-container">
+      <div class="col-12 license-info-list-container card bg-dark-card">
+        <h1 class="text-center">About the licenses used on this project</h1>
+        <div class="row mt-2" id="licenseDataContainer">
+          <accordion [isAnimated]="true" [closeOthers]="true">
+            <accordion-group [panelClass]="customClass" *ngFor="let license of licenses" [heading]="license.libraryName + '( ' + license.licenseName + ' )'">
+              {{ license?.licenseText }}
+            </accordion-group>
+          </accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

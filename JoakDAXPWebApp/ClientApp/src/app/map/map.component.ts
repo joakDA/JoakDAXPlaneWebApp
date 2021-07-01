@@ -6,6 +6,7 @@ import {MapService} from '../_services/map.service';
 import {GpsPosition} from '../_models/gpsPosition';
 import {DtoPosition} from '../_models/xplane/dtoPosition';
 import {Subscription} from 'rxjs';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-map',
@@ -15,6 +16,12 @@ import {Subscription} from 'rxjs';
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   private historicMap: L.Map;
   private signalRSubscription: Subscription;
+
+  startDate = moment().startOf('day');
+  endDate = moment().endOf('day');
+  startOptions: any = {format: 'DD/MM/YYYY HH:mm:ss', locale: 'es', sideBySide: true, widgetPositioning: {horizontal: 'right', vertical: 'auto'}};
+  endOptions: any = {format: 'DD/MM/YYYY HH:mm:ss', locale: 'es', sideBySide: true, widgetPositioning: {horizontal: 'right', vertical: 'auto'}};
+
   constructor(private signalRService: SignalRService, private mapService: MapService) { }
 
   ngOnInit(): void {
@@ -23,6 +30,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.signalRSubscription = this.signalRService.onSignalRMessage.subscribe((data: XPlaneData) => {
       this.updatePositionOnMap(data.dataPosition);
     });
+
+    // Linked datepickers
+    this.endOptions.minDate = this.startDate;
+    this.startOptions.maxDate = this.endDate;
   }
 
   ngAfterViewInit(): void {
@@ -44,5 +55,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.signalRSubscription.unsubscribe();
     }
     this.signalRService.stopConnection();
+  }
+
+  onUpdateDatepicker() {
+    // Linked datepickers
+    this.startOptions.maxDate = this.endDate;
+    this.endOptions.minDate = this.startDate;
   }
 }

@@ -18,7 +18,7 @@
     <td>{{userData.email}}</td>
     <td>{{userData.username}}</td>
     <td class="buttons-column" style="white-space: nowrap">
-      <a routerLink="edit/{{userData.id}}" class="btn btn-dark-primary">Edit</a>
+      <a routerLink="/account/edit/{{userData.id}}" class="btn btn-dark-primary">Edit</a>
       <button (click)="deleteUser(userData.id)" class="btn btn-dark-danger btn-delete-user"
               [disabled]="userData.isDeleting">
         <span *ngIf="userData.isDeleting" class="spinner-border spinner-border-sm"></span>

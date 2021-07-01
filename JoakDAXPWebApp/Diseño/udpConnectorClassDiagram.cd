@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="XPlaneUDPExchange.Helpers.Enum_EventTypes" Collapsed="true">
+    <Position X="18.75" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Helpers.Enum_DataGroup" Collapsed="true">
+    <Position X="18.75" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Helpers.LogHelper" Collapsed="true">
+    <Position X="18.75" Y="5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Helpers.ThreadHelper" Collapsed="true">
+    <Position X="18.75" Y="1" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.XPlaneUDPExchange" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.75" Y="6" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataAtmosphere" Collapsed="true">
+    <Position X="1.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataAttitude" Collapsed="true">
+    <Position X="8.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataFrameRate" Collapsed="true">
+    <Position X="13" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataLandingGearBrakes" Collapsed="true">
+    <Position X="13.25" Y="3" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataLocationVelocityDistanceTraveled" Collapsed="true">
+    <Position X="2" Y="3" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataMachVviGLoad" Collapsed="true">
+    <Position X="8.75" Y="3" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataPosition" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataSpeed" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataSystemPressures" Collapsed="true">
+    <Position X="15.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataTimes" Collapsed="true">
+    <Position X="16" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataTrimFlapsSlatsSpeedBrakes" Collapsed="true">
+    <Position X="5.5" Y="3" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataUnknown" Collapsed="true">
+    <Position X="11.25" Y="3" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.DataWeather" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Data.XPlaneData" Collapsed="true">
+    <Position X="16.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoData" Collapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataAtmosphere" Collapsed="true">
+    <Position X="16" Y="8.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataAttitude" Collapsed="true">
+    <Position X="5.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataFrameRate" Collapsed="true">
+    <Position X="10.25" Y="9.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataLandingGearBrakes" Collapsed="true">
+    <Position X="0.75" Y="9.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataLocationVelocityDistanceTraveled" Collapsed="true">
+    <Position X="4.25" Y="8.25" Width="3" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataMachVvi" Collapsed="true">
+    <Position X="11.5" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataPosition" Collapsed="true">
+    <Position X="3.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataSpeed" Collapsed="true">
+    <Position X="8" Y="9.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataSystemPressures" Collapsed="true">
+    <Position X="12.75" Y="9.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataTimes" Collapsed="true">
+    <Position X="2" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataTrimFlapsSlatsSpeedBrakes" Collapsed="true">
+    <Position X="8" Y="8.25" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.DTO.DtoDataWeather" Collapsed="true">
+    <Position X="13.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Events.CustomEventArgs" Collapsed="true">
+    <Position X="18.75" Y="4" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XPlaneUDPExchange.Model.Events.XPlaneDataReceivedEvent" Collapsed="true">
+    <Position X="18.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="XPlaneUDPExchange.Interfaces.IXPlaneUDPExchange" Collapsed="true">
+    <Position X="18.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

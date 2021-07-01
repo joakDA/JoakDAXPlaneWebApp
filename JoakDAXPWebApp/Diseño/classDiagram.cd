@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="JoakDAXPWebApp.Program" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Startup" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAgAAACAAAAAA=</HashCode>
+      <FileName>Startup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Authorization.AllowAnonymousAttribute" Collapsed="true">
+    <Position X="17" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\AllowAnonymousAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Authorization.AuthorizeAttribute" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="17" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Authorization\AuthorizeAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JoakDAXPWebApp.Authorization.JwtMiddleware" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAABAAAAA=</HashCode>
+      <FileName>Authorization\JwtMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Authorization.JwtUtils" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAABAAAAA=</HashCode>
+      <FileName>Authorization\JwtUtils.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JoakDAXPWebApp.Controllers.FlightsController">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Controllers\FlightsController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Controllers.UsersController">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAABAAIAAAEBAAAAAgAEABAAAIA=</HashCode>
+      <FileName>Controllers\UsersController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Data.ApplicationDbContext" Collapsed="true">
+    <Position X="16.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAAAACAAAQAQAAAAAAAAAAAAEAAAAAAQgAAAAAAAAAA=</HashCode>
+      <FileName>Data\ApplicationDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Entities.BaseEntity" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>Entities\BaseEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Entities.Flight" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAAEAAAAAAAAIIAAACAAAAAAAAAABAAAEEKAA=</HashCode>
+      <FileName>Entities\Flight.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Entities.FlightEventType" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAIAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Entities\FlightEventType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Entities.User" Collapsed="true">
+    <Position X="5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Entities\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Exceptions.AppException" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\AppException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Helpers.AppSettings" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Helpers\AppSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Helpers.AutoMapperProfile" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\AutoMapperProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Helpers.ErrorHandlerMiddleware" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\ErrorHandlerMiddleware.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Hubs.XPlaneHub" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Hubs\XPlaneHub.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Migrations.DbInit" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAI=</HashCode>
+      <FileName>Migrations\20210627182444_DbInit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Migrations.ApplicationDbContextModelSnapshot" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Migrations\ApplicationDbContextModelSnapshot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.DataTable.DataTableRequestModel" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAgAEIAAAAAAAAAAAAACCAAAAAAAAA=</HashCode>
+      <FileName>Models\DataTable\DataTableRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.DataTable.Column" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAACAQAAAAAAA=</HashCode>
+      <FileName>Models\DataTable\DataTableRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.DataTable.Search" Collapsed="true">
+    <Position X="12.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataTable\DataTableRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.DataTable.Order" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataTable\DataTableRequestModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.DataTable.DataTableResponseModel&lt;T&gt;" Collapsed="true">
+    <Position X="17" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAABAAAAAAQABAAAA=</HashCode>
+      <FileName>Models\DataTable\DataTableResponseModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.Users.AuthenticateRequest" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Users\AuthenticateRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.Users.AuthenticateResponse" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAEAAACAAAAAAAQAAAAAAAAAAAAAAAAAAAAABAAg=</HashCode>
+      <FileName>Models\Users\AuthenticateResponse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.Users.RegisterRequest" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Users\RegisterRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.Users.UpdateRequest" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAACAAAAAAAQAAAAAAAAAAAAACAAAAAAAAAAg=</HashCode>
+      <FileName>Models\Users\UpdateRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Models.XPlaneDataModel" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEgAAQAAAAAAAChCAAAAABAAABgAACAAAAAAACAA=</HashCode>
+      <FileName>Models\XPlaneDataModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Pages.ErrorModel" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAQAAAAAAAAAIAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Pages\Error.cshtml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="JoakDAXPWebApp.Services.FlightService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAABAACAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Services\FlightService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JoakDAXPWebApp.Services.UserService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAABAAAAAABAAIAAAEBCAAAAgAAABAAAIA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="JoakDAXPWebApp.Services.XPlaneDataService" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAEAAAJIAAAAQAAAAAAAAAAAEAAAAAAAIAAAAEAA=</HashCode>
+      <FileName>Services\XPlaneDataService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="JoakDAXPWebApp.Interfaces.IFlightService">
+    <Position X="14.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IFlightService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JoakDAXPWebApp.Interfaces.IJwtUtils">
+    <Position X="11" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IJwtUtils.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JoakDAXPWebApp.Interfaces.IUserService">
+    <Position X="12.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAIAAAEBAAAAAgAAAAAAAIA=</HashCode>
+      <FileName>Interfaces\IUserService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JoakDAXPWebApp.Interfaces.IXPlaneDataService">
+    <Position X="16.25" Y="5.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IXPlaneDataService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="JoakDAXPWebApp.Services.IDatabaseService">
+    <Position X="18.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\IDatabaseService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

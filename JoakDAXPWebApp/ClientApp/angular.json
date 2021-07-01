@@ -33,10 +33,12 @@
               "src/assets/css/flightindicators.css",
               "node_modules/leaflet/dist/leaflet.css",
               "node_modules/leaflet-extra-markers/dist/css/leaflet.extra-markers.min.css",
-              "node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css"
+              "node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css",
+              "node_modules/tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
+              "node_modules/moment/min/moment.min.js",
               "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
               "node_modules/datatables.net-buttons/js/dataTables.buttons.js",
@@ -47,7 +49,8 @@
               "node_modules/datatables.net-responsive/js/dataTables.responsive.js",
               "src/assets/js/d3.min.js",
               "src/assets/js/jquery.flightindicators.js",
-              "node_modules/leaflet/dist/leaflet.js"
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.js"
             ]
           },
           "configurations": {

@@ -55,6 +55,7 @@ namespace JoakDAXPWebApp
             services.AddScoped<IJwtUtils, JwtUtils>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IFlightService, FlightService>();
+            services.AddScoped<ILicenseInfoService, LicenseInfoService>();
 
             // Add CORS to allow Cross Origin Request
             services.AddCors(options =>

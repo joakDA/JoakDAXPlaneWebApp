@@ -110,6 +110,10 @@ table.table th, table.table td{
   vertical-align: middle;
 }
 
+.row-datetime-filters table.table th, .row-datetime-filters table.table td {
+  color: #36f;
+}
+
 .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled, .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover, .app-container .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active, .dataTables_wrapper .dataTables_paginate a.paginate_button:not(.current){
   color: #36f !important;
 }
@@ -258,4 +262,12 @@ table.table th, table.table td{
 
 #map {
   height: 100%;
+}
+
+#licenseDataContainer .panel.card.bg-dark {
+  margin: 0.5em 2em;
+}
+
+#licenseDataContainer accordion {
+  width: 100%;
 }

@@ -6,9 +6,6 @@
       "suggestion": "true",
       "ignored": "true"
     },
-    "secrets1": {
-      "type": "secrets.user"
-    },
     "signalr1": {
       "type": "signalr",
       "connectionId": "",
