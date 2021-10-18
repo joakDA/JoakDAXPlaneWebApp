@@ -8,6 +8,7 @@ using JoakDAXPWebApp.Models;
 using JoakDAXPWebApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -78,6 +79,14 @@ namespace JoakDAXPWebApp
             // migrate any database changes on startup (includes initial db creation)
             applicationDbContext.Database.Migrate();
 
+            // Use proxy server
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -108,9 +117,6 @@ namespace JoakDAXPWebApp
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();
 
-            /*app.UseAuthentication();
-            app.UseIdentityServer();
-            app.UseAuthorization();*/
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
